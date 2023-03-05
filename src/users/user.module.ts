@@ -24,5 +24,6 @@ export class UserModule implements NestModule {
         method: RequestMethod.GET,
       },
     );
+    console.log('Middleware applied');
   }
 }

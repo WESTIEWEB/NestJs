@@ -14,6 +14,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from '../dto/CreateUser.dto';
 import { UsersService } from '../services';
+import { ValidateCreateUserPipeTsPipe } from '../pipes/validate-create-user.pipe.ts/validate-create-user.pipe.ts.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -25,9 +26,9 @@ export class UsersController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  createUser(@Body() body: CreateUserDto) {
+  createUser(@Body(ValidateCreateUserPipeTsPipe) body: CreateUserDto) {
     const user = this.userServices.createNewUser(body);
-    console.log(user);
+    console.log(body.age.toPrecision());
     return { user };
   }
 
